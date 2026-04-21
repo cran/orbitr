@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Built-In Physical Constants</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Built-In Physical Constants</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(orbitr)</span></code></pre></div>
+<p><code>orbitr</code> ships a set of real-world masses, distances, and
+orbital speeds so you don’t have to Google them every time. All values
+are in SI units (kg, meters, m/s).</p>
+<div id="masses" class="section level2">
+<h2>Masses</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>mass_sun          <span class="co"># 1.989e30 kg</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>mass_earth        <span class="co"># 5.972e24 kg</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>mass_moon         <span class="co"># 7.342e22 kg</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>mass_mars         <span class="co"># 6.417e23 kg</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>mass_jupiter      <span class="co"># 1.898e27 kg</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>mass_saturn       <span class="co"># 5.683e26 kg</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>mass_venus        <span class="co"># 4.867e24 kg</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>mass_mercury      <span class="co"># 3.301e23 kg</span></span></code></pre></div>
+</div>
+<div id="orbital-distances-semi-major-axes" class="section level2">
+<h2>Orbital Distances (Semi-Major Axes)</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>distance_earth_sun    <span class="co"># 1.496e11 m  (~149.6 million km)</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>distance_earth_moon   <span class="co"># 3.844e8  m  (~384,400 km)</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>distance_mars_sun     <span class="co"># 2.279e11 m</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>distance_jupiter_sun  <span class="co"># 7.785e11 m</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>distance_venus_sun    <span class="co"># 1.082e11 m</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>distance_mercury_sun  <span class="co"># 5.791e10 m</span></span></code></pre></div>
+</div>
+<div id="mean-orbital-speeds" class="section level2">
+<h2>Mean Orbital Speeds</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>speed_earth       <span class="co"># 29,780 m/s</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>speed_moon        <span class="co">#  1,022 m/s</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>speed_mars        <span class="co"># 24,070 m/s</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>speed_jupiter     <span class="co"># 13,060 m/s</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>speed_venus       <span class="co"># 35,020 m/s</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>speed_mercury     <span class="co"># 47,360 m/s</span></span></code></pre></div>
+</div>
+<div id="using-the-constants" class="section level2">
+<h2>Using the Constants</h2>
+<p>This means the Earth-Moon example can be written as:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">create_system</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Earth&quot;</span>, <span class="at">mass =</span> mass_earth) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Moon&quot;</span>,  <span class="at">mass =</span> mass_moon, <span class="at">x =</span> distance_earth_moon, <span class="at">vy =</span> speed_moon) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">simulate_system</span>(<span class="at">time_step =</span> seconds_per_hour, <span class="at">duration =</span> seconds_per_day <span class="sc">*</span> <span class="dv">28</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="fu">plot_orbits</span>()</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="why-distance-constants-are-semi-major-axes" class="section level2">
+<h2>Why “Distance” Constants Are Semi-Major Axes</h2>
+<p>Orbital distances are not truly constant — every orbit is an ellipse,
+so the separation between two bodies changes continuously throughout
+each revolution. The values provided here are <strong>semi-major
+axes</strong>: the average of the closest approach (periapsis) and the
+farthest point (apoapsis).</p>
+<p>The semi-major axis is the single most characteristic length scale of
+an elliptical orbit. It determines the orbital period via Kepler’s Third
+Law, and when paired with the mean orbital speed, it produces a
+near-circular trajectory that closely approximates the real orbit. For
+example, the Earth-Sun distance varies from about 147.1 million km in
+January (perihelion) to 152.1 million km in July (aphelion). The
+semi-major axis of 149.6 million km sits right in the middle and gives
+the correct one-year orbital period.</p>
+<p>If you want an elliptical orbit instead, start the body at periapsis
+with a faster-than-mean velocity, or at apoapsis with a slower one.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

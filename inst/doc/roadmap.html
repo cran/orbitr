@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Roadmap</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Roadmap</h1>
+
+
+
+<p><code>orbitr</code> is a work in progress. This page is a running
+list of features I’m thinking about adding in future versions. Nothing
+here is promised, and the priority order is loose — it mostly reflects
+what I personally find interesting or what users have asked for. If any
+of these sound useful (or terrible), let me know. Suggestions, feedback,
+and pull requests are all very welcome.</p>
+<div id="physics" class="section level2">
+<h2>Physics</h2>
+<div id="a-radius-argument-on-add_body" class="section level3">
+<h3>A <code>radius</code> argument on <code>add_body()</code></h3>
+<p>Right now bodies are treated as point masses. This is fine for most
+orbital distances — gravity outside a sphere behaves exactly as if all
+the mass were concentrated at its center (the shell theorem) — but it
+means there’s no concept of two bodies physically touching. Adding an
+optional <code>radius</code> parameter would enable collision detection,
+merging on contact, and more realistic close-encounter behavior.</p>
+<p>I’d probably add it to <code>add_body()</code> as an optional
+parameter with a sensible default, something like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>add_body <span class="ot">&lt;-</span> <span class="cf">function</span>(system, id, mass, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">z =</span> <span class="dv">0</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>                     <span class="at">vx =</span> <span class="dv">0</span>, <span class="at">vy =</span> <span class="dv">0</span>, <span class="at">vz =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<p>If <code>r</code> is supplied for any body in the system, the
+integrator would check for overlaps on each step and handle them
+according to a user-chosen policy (elastic bounce, inelastic merge,
+simulation halt, etc.).</p>
+<p>In the meantime, the existing <code>softening</code> parameter on
+<code>simulate_system()</code> partly works around the missing-radius
+problem by preventing the gravitational force from blowing up at very
+small separations — see <a href="the-physics.html">The Physics</a> for
+details.</p>
+</div>
+<div id="non-gravitational-forces" class="section level3">
+<h3>Non-gravitational forces</h3>
+<p>Optional support for forces beyond pure Newtonian gravity:</p>
+<ul>
+<li><strong>Atmospheric drag</strong> for low orbits around bodies with
+atmospheres</li>
+<li><strong>Radiation pressure</strong> for small bodies near a
+star</li>
+<li><strong>J2 oblateness corrections</strong> for orbits around
+non-spherical bodies (Earth’s equatorial bulge measurably perturbs
+satellite orbits)</li>
+</ul>
+</div>
+<div id="general-relativistic-corrections" class="section level3">
+<h3>General-relativistic corrections</h3>
+<p>A small post-Newtonian correction term would let <code>orbitr</code>
+reproduce real GR effects like the precession of Mercury’s perihelion.
+Probably opt-in via an argument on <code>simulate_system()</code>, since
+most users wouldn’t need it.</p>
+</div>
+</div>
+<div id="setup-helpers" class="section level2">
+<h2>Setup helpers</h2>
+<div id="construct-bodies-from-keplerian-orbital-elements-added-in-v0.2.0" class="section level3">
+<h3><del>Construct bodies from Keplerian orbital elements</del> ✅ Added
+in v0.2.0</h3>
+<p>Implemented as <code>add_body_keplerian()</code>. See
+<code>?add_body_keplerian</code> for details.</p>
+</div>
+<div id="a-load_solar_system-convenience-added-in-v0.2.0" class="section level3">
+<h3><del>A <code>load_solar_system()</code> convenience</del> ✅ Added
+in v0.2.0</h3>
+<p>Implemented as <code>load_solar_system()</code>. Builds the Sun, all
+eight planets, the Moon, and Pluto using real Keplerian elements from
+JPL DE440. See <code>?load_solar_system</code> for details.</p>
+</div>
+</div>
+<div id="quality-of-life" class="section level2">
+<h2>Quality of life</h2>
+<div id="save-and-load-simulation-state" class="section level3">
+<h3>Save and load simulation state</h3>
+<p>Functions to serialize an <code>orbit_system</code> (or a completed
+simulation tibble) to disk and reload it later. Useful for long-running
+simulations and for sharing reproducible setups.</p>
+</div>
+<div id="progress-bar-for-long-simulations" class="section level3">
+<h3>Progress bar for long simulations</h3>
+<p>A simple progress indicator on <code>simulate_system()</code> for
+runs that take more than a few seconds, with an option to disable it for
+scripted use.</p>
+</div>
+<div id="built-in-conservation-diagnostics" class="section level3">
+<h3>Built-in conservation diagnostics</h3>
+<p>Helpers to compute total energy, total linear momentum, and total
+angular momentum at every time step, so you can sanity-check an
+integrator’s behavior over the course of a run. Useful for confirming
+Velocity Verlet is doing its job, and for spotting cases where the time
+step is too large.</p>
+</div>
+</div>
+<div id="suggestions-welcome" class="section level2">
+<h2>Suggestions Welcome</h2>
+<p>If any of these sound useful, if you’d like to see something not on
+this list, or if you have a use case that <code>orbitr</code> doesn’t
+currently handle well, please open an issue on <a href="https://github.com/DRosenman/orbitr/issues">GitHub</a>. I’d love
+to hear about how people are using the package and what would make it
+more useful. Pull requests are also very welcome.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

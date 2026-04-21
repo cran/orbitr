@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>The Physics</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">The Physics</h1>
+
+
+
+<div id="gravitational-acceleration" class="section level2">
+<h2>Gravitational Acceleration</h2>
+<p>Every body in the system attracts every other body according to
+Newton’s Law of Universal Gravitation. For body <span class="math inline">\(j\)</span>, the net acceleration due to all other
+bodies <span class="math inline">\(k\)</span> is:</p>
+<p><span class="math display">\[\vec{a}_j = \sum_{k \neq j} \frac{G \,
+m_k}{r_{jk}^2} \, \hat{r}_{jk}\]</span></p>
+<p>where <span class="math inline">\(r_{jk} = \lvert\vec{r}_k -
+\vec{r}_j\rvert\)</span> is the distance between the two bodies and
+<span class="math inline">\(\hat{r}_{jk}\)</span> is the unit vector
+pointing from <span class="math inline">\(j\)</span> toward <span class="math inline">\(k\)</span>.</p>
+</div>
+<div id="why-initial-velocity-matters" class="section level2">
+<h2>Why Initial Velocity Matters</h2>
+<p>Gravity alone will pull every body straight toward every other body.
+What <em>prevents</em> them from colliding is their initial velocity —
+the sideways motion that turns a free-fall into a curved orbit. This is
+the same reason the Moon doesn’t crash into the Earth: it’s falling
+toward us constantly, but it’s also moving sideways fast enough that it
+keeps missing.</p>
+<p>When you call <code>add_body()</code>, the <code>vx</code>,
+<code>vy</code>, <code>vz</code> parameters set this initial velocity.
+The balance between speed and distance determines the shape of the
+orbit. At a given distance <span class="math inline">\(r\)</span> from a
+central mass <span class="math inline">\(M\)</span>, the
+<strong>circular orbit velocity</strong> is:</p>
+<p><span class="math display">\[v_{\text{circ}} = \sqrt{\frac{G \,
+M}{r}}\]</span></p>
+<p>If the body’s speed exactly matches this, it traces a perfect circle.
+Faster and the orbit stretches into an ellipse (or escapes entirely if
+<span class="math inline">\(v \geq v_{\text{circ}} \sqrt{2}\)</span>).
+Slower and the orbit drops into a tighter ellipse that dips closer to
+the central body. With zero velocity, the body falls straight in — no
+orbit at all.</p>
+</div>
+<div id="gravitational-softening" class="section level2">
+<h2>Gravitational Softening</h2>
+<p>When two bodies pass very close, <span class="math inline">\(r \to
+0\)</span> and the acceleration diverges toward infinity. This is a
+well-known numerical problem in N-body codes. <code>orbitr</code> offers
+an optional <strong>softening length</strong> <span class="math inline">\(\varepsilon\)</span> that regularizes the
+potential:</p>
+<p><span class="math display">\[r_{\text{soft}} = \sqrt{r^2 +
+\varepsilon^2}\]</span></p>
+<p>With softening enabled, close encounters produce large but finite
+forces instead of blowing up to <code>NaN</code>. Set
+<code>softening = 0</code> (the default) for exact Newtonian gravity, or
+try something like <code>softening = 1e4</code> (10 km) for dense
+systems.</p>
+</div>
+<div id="numerical-integration-methods" class="section level2">
+<h2>Numerical Integration Methods</h2>
+<p><code>simulate_system()</code> offers three methods for stepping the
+system forward through time. All operate in 3D Cartesian
+coordinates.</p>
+<div id="velocity-verlet-default-method-verlet" class="section level3">
+<h3>1. Velocity Verlet (default, <code>method = &quot;verlet&quot;</code>)</h3>
+<p>A second-order symplectic integrator. It conserves energy over long
+timescales, making it the gold standard for orbital mechanics. Orbits
+stay closed and stable indefinitely.</p>
+<p><span class="math display">\[\vec{x}_{t+\Delta t} = \vec{x}_t +
+\vec{v}_t \, \Delta t + \tfrac{1}{2} \vec{a}_t \, \Delta
+t^2\]</span></p>
+<p><span class="math display">\[\vec{v}_{t+\Delta t} = \vec{v}_t +
+\tfrac{1}{2} \left( \vec{a}_t + \vec{a}_{t+\Delta t} \right) \Delta
+t\]</span></p>
+<p>The position is advanced first, then the acceleration is recalculated
+at the new position, and finally the velocity is updated using the
+average of the old and new accelerations. This requires
+<strong>two</strong> acceleration evaluations per step (the main cost),
+but the payoff in stability is enormous.</p>
+</div>
+<div id="euler-cromer-method-euler_cromer" class="section level3">
+<h3>2. Euler-Cromer (<code>method = &quot;euler_cromer&quot;</code>)</h3>
+<p>A first-order symplectic method. It updates velocity first, then uses
+the <em>new</em> velocity to update position. This small reordering
+prevents the systematic energy drift that plagues standard Euler:</p>
+<p><span class="math display">\[\vec{v}_{t+\Delta t} = \vec{v}_t +
+\vec{a}_t \, \Delta t\]</span></p>
+<p><span class="math display">\[\vec{x}_{t+\Delta t} = \vec{x}_t +
+\vec{v}_{t+\Delta t} \, \Delta t\]</span></p>
+<p>Faster than Verlet (one acceleration evaluation per step) but less
+accurate. Good for quick previews.</p>
+</div>
+<div id="standard-euler-method-euler" class="section level3">
+<h3>3. Standard Euler (<code>method = &quot;euler&quot;</code>)</h3>
+<p>The classical textbook method. Position and velocity are both updated
+using values from the <em>current</em> time step:</p>
+<p><span class="math display">\[\vec{x}_{t+\Delta t} = \vec{x}_t +
+\vec{v}_t \, \Delta t\]</span></p>
+<p><span class="math display">\[\vec{v}_{t+\Delta t} = \vec{v}_t +
+\vec{a}_t \, \Delta t\]</span></p>
+<p>This artificially pumps energy into the system, causing orbits to
+spiral outward over time. Included primarily for educational comparison
+— use Verlet for real work.</p>
+</div>
+<div id="comparing-the-three-methods" class="section level3">
+<h3>Comparing the Three Methods</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(orbitr)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>system <span class="ot">&lt;-</span> <span class="fu">create_system</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Star&quot;</span>, <span class="at">mass =</span> <span class="fl">1e30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Planet&quot;</span>, <span class="at">mass =</span> <span class="fl">1e24</span>, <span class="at">x =</span> <span class="fl">1e11</span>, <span class="at">vy =</span> <span class="dv">30000</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>verlet <span class="ot">&lt;-</span> <span class="fu">simulate_system</span>(system, <span class="at">time_step =</span> seconds_per_hour, <span class="at">duration =</span> seconds_per_year, <span class="at">method =</span> <span class="st">&quot;verlet&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="st">&quot;Velocity Verlet&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>euler_cromer <span class="ot">&lt;-</span> <span class="fu">simulate_system</span>(system, <span class="at">time_step =</span> seconds_per_hour, <span class="at">duration =</span> seconds_per_year, <span class="at">method =</span> <span class="st">&quot;euler_cromer&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="st">&quot;Euler-Cromer&quot;</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>euler <span class="ot">&lt;-</span> <span class="fu">simulate_system</span>(system, <span class="at">time_step =</span> seconds_per_hour, <span class="at">duration =</span> seconds_per_year, <span class="at">method =</span> <span class="st">&quot;euler&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="st">&quot;Standard Euler&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">bind_rows</span>(verlet, euler_cromer, euler) <span class="sc">|&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">==</span> <span class="st">&quot;Planet&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> method)) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_path</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<p>Verlet traces a clean closed ellipse, Euler-Cromer stays close but
+drifts slightly, and standard Euler spirals outward as it pumps energy
+into the orbit.</p>
+</div>
+</div>
+<div id="keplerian-orbital-elements" class="section level2">
+<h2>Keplerian Orbital Elements</h2>
+<p>Everything above describes how <code>orbitr</code> <em>simulates</em>
+— stepping positions and velocities forward using Newton’s law. But
+there’s an older, more elegant description of orbits that predates
+Newton by decades: <strong>Kepler’s laws</strong>. Johannes Kepler
+showed in 1609 that planetary orbits are ellipses with the Sun at one
+focus, and that they sweep out equal areas in equal times. These
+geometric properties lead to a compact way of describing any orbit with
+just six numbers, called the <strong>Keplerian orbital
+elements</strong>.</p>
+<p>The six elements split into three groups:</p>
+<p><strong>Shape</strong> — <em>how big and how stretched is the
+ellipse?</em></p>
+<ul>
+<li><strong>Semi-major axis</strong> (<span class="math inline">\(a\)</span>): half the longest diameter of the
+ellipse. Determines the orbital period through Kepler’s Third Law: <span class="math inline">\(T = 2\pi\sqrt{a^3 / \mu}\)</span>, where <span class="math inline">\(\mu = GM\)</span> is the gravitational parameter
+of the parent body.</li>
+<li><strong>Eccentricity</strong> (<span class="math inline">\(e\)</span>): how elongated the ellipse is. <span class="math inline">\(e = 0\)</span> is a circle; <span class="math inline">\(0 &lt; e &lt; 1\)</span> is an ellipse. At any
+point, the distance from the parent is <span class="math inline">\(r =
+a(1-e^2)/(1 + e\cos\nu)\)</span>.</li>
+</ul>
+<p><strong>Orientation</strong> — <em>how is the ellipse tilted and
+rotated in 3D space?</em></p>
+<ul>
+<li><strong>Inclination</strong> (<span class="math inline">\(i\)</span>): the angle between the orbital plane
+and a reference plane (the ecliptic for solar system orbits). <span class="math inline">\(0°\)</span> is flat; <span class="math inline">\(90°\)</span> is a polar orbit.</li>
+<li><strong>Longitude of ascending node</strong> (<span class="math inline">\(\Omega\)</span>): the direction the tilt points.
+Measured from a reference direction to where the orbit crosses the
+reference plane going “upward.”</li>
+<li><strong>Argument of periapsis</strong> (<span class="math inline">\(\omega\)</span>): the angle within the orbital
+plane from the ascending node to the closest-approach point. Rotates the
+ellipse around the parent within its own plane.</li>
+</ul>
+<p><strong>Position</strong> — <em>where is the body right now?</em></p>
+<ul>
+<li><strong>True anomaly</strong> (<span class="math inline">\(\nu\)</span>): the angle from periapsis to the
+body’s current position along the orbit. <span class="math inline">\(0°\)</span> is at periapsis (closest); <span class="math inline">\(180°\)</span> is at apoapsis (farthest).</li>
+</ul>
+<div id="from-elements-to-cartesian-state-vectors" class="section level3">
+<h3>From Elements to Cartesian State Vectors</h3>
+<p><code>orbitr</code>’s simulation engine works entirely in Cartesian
+coordinates — positions <span class="math inline">\((x, y, z)\)</span>
+and velocities <span class="math inline">\((v_x, v_y, v_z)\)</span>. The
+function <code>add_body_keplerian()</code> converts Keplerian elements
+to Cartesian through a standard three-step procedure:</p>
+<p><strong>Step 1: Solve the orbit equation in the orbital
+plane.</strong> The distance from the parent at true anomaly <span class="math inline">\(\nu\)</span> is:</p>
+<p><span class="math display">\[r = \frac{a(1-e^2)}{1 +
+e\cos\nu}\]</span></p>
+<p>The position in the <strong>perifocal frame</strong> (a coordinate
+system where the x-axis points toward periapsis and the y-axis is 90°
+ahead in the direction of motion):</p>
+<p><span class="math display">\[x_{\text{pf}} = r\cos\nu, \quad
+y_{\text{pf}} = r\sin\nu\]</span></p>
+<p><strong>Step 2: Compute velocity from the vis-viva relation.</strong>
+The specific angular momentum <span class="math inline">\(h = \sqrt{\mu
+a(1 - e^2)}\)</span> gives the velocity components in the perifocal
+frame:</p>
+<p><span class="math display">\[v_{x,\text{pf}} = -\frac{\mu}{h}\sin\nu,
+\quad v_{y,\text{pf}} = \frac{\mu}{h}(e + \cos\nu)\]</span></p>
+<p>These follow from conservation of angular momentum (<span class="math inline">\(h = rv_\perp\)</span>) and the vis-viva equation
+<span class="math inline">\(v^2 = \mu(2/r - 1/a)\)</span>.</p>
+<p><strong>Step 3: Rotate into the inertial frame.</strong> Three Euler
+rotations transform from the perifocal frame to the simulation’s
+inertial frame:</p>
+<p><span class="math display">\[R = R_z(-\Omega) \cdot R_x(-i) \cdot
+R_z(-\omega)\]</span></p>
+<p>This sequence first rotates by <span class="math inline">\(-\omega\)</span> to align periapsis with the
+ascending node, then tilts by <span class="math inline">\(-i\)</span> to
+incline the orbital plane, and finally rotates by <span class="math inline">\(-\Omega\)</span> to orient the node line. The
+resulting position and velocity are added to the parent body’s state to
+get absolute coordinates.</p>
+</div>
+<div id="keplers-laws-and-the-simulation" class="section level3">
+<h3>Kepler’s Laws and the Simulation</h3>
+<p>An interesting property of the Keplerian description is that it’s
+<em>exact</em> for two-body problems — a single planet orbiting a single
+star will follow a perfect ellipse forever. The elements are constants
+of motion.</p>
+<p>In an N-body simulation like <code>orbitr</code>, however, the
+elements are only approximate because the gravitational pulls of other
+bodies perturb the orbit. Jupiter slightly tugs on Earth, Mars slightly
+tugs on Venus, and so on. Over long timescales, these perturbations
+cause the elements to drift — <span class="math inline">\(\omega\)</span> precesses, <span class="math inline">\(e\)</span> oscillates, inclinations wobble. This
+is real physics: the precession of Mercury’s perihelion was one of the
+first tests of General Relativity.</p>
+<p>The Keplerian elements in <code>add_planet()</code> and
+<code>load_solar_system()</code> define the <em>initial conditions</em>
+at the start of the simulation. Once <code>simulate_system()</code>
+takes over, the full N-body dynamics handles all the perturbations
+automatically.</p>
+<p>For a thorough walkthrough of each element with visual examples, see
+the <a href="keplerian-elements.html">Keplerian Orbital Elements</a>
+vignette.</p>
+</div>
+</div>
+<div id="the-c-engine" class="section level2">
+<h2>The C++ Engine</h2>
+<p>The inner acceleration loop is the computational bottleneck of any
+N-body simulation. <code>orbitr</code> ships a compiled C++ kernel (via
+<code>Rcpp</code>) that computes the <span class="math inline">\(O(n^2)\)</span> pairwise interactions in a tight
+nested loop. When the package is installed from source with a working
+C++ toolchain, <code>simulate_system()</code> automatically dispatches
+to this engine. If the compiled code isn’t available, it falls back to a
+vectorized R implementation that uses matrix outer products — still
+fast, but the C++ path is significantly faster for systems with many
+bodies.</p>
+<p>You can control this with the <code>use_cpp</code> argument:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Force the pure-R engine (useful for debugging or benchmarking)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">simulate_system</span>(system, <span class="at">use_cpp =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
