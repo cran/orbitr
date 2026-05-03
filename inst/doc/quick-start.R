@@ -56,10 +56,23 @@ load_solar_system() |>
   plot_orbits(three_d = FALSE)
 
 ## -----------------------------------------------------------------------------
+load_solar_system() |>
+  remove_body(c("Pluto", "Moon")) |>
+  simulate_system(time_step = seconds_per_day, duration = seconds_per_year) |>
+  plot_orbits(three_d = FALSE)
+
+## -----------------------------------------------------------------------------
 sim <- create_system() |>
   add_body("Earth", mass = mass_earth) |>
   add_body("Moon",  mass = mass_moon, x = distance_earth_moon, vy = speed_moon) |>
   simulate_system(time_step = seconds_per_hour, duration = seconds_per_day * 28)
 
 sim
+
+## ----eval = FALSE-------------------------------------------------------------
+# save_system(sys, "my_system.rds")
+# restored <- load_system("my_system.rds")
+
+## ----eval = FALSE-------------------------------------------------------------
+# export_bodies(sys, "bodies.csv")
 

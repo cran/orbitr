@@ -2,7 +2,7 @@ Package: orbitr
 Type: Package
 Title: A Tidy Physics Engine for Building and Visualizing Orbital
         Simulations
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: c(
     person(
       "Dave", "Rosenman",
@@ -30,9 +30,9 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 LinkingTo: Rcpp
 NeedsCompilation: yes
-Packaged: 2026-04-20 17:05:18 UTC; daver
+Packaged: 2026-05-01 18:48:54 UTC; daver
 Author: Dave Rosenman [aut, cre]
 Maintainer: Dave Rosenman <dave.rosenman.data@gmail.com>
 Depends: R (>= 4.1.0)
 Repository: CRAN
-Date/Publication: 2026-04-21 20:32:15 UTC
+Date/Publication: 2026-05-03 06:30:02 UTC

@@ -343,8 +343,12 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <div id="installation" class="section level2">
 <h2>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;daverosenman/orbitr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install from CRAN:</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;orbitr&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Or install the development version from GitHub:</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DRosenman/orbitr&quot;</span>)</span></code></pre></div>
 <p>For 3D interactive plotting, you’ll also want:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)</span></code></pre></div>
 </div>
@@ -435,7 +439,11 @@ with <code>install.packages(c(&quot;gganimate&quot;, &quot;gifski&quot;))</code>
 <h2>Adding More Bodies</h2>
 <p>Since <code>orbitr</code> is a full N-body engine, you can add as
 many bodies as you want. Each one gravitationally interacts with every
-other. Here’s the Sun with both Earth and Venus for a full year:</p>
+other.</p>
+<p>For real solar system bodies, there are two ways to add them:</p>
+<p><strong>The manual way</strong> — use <code>add_body()</code> with
+explicit positions and velocities. This gives you full control and works
+for any body, real or fictional:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">create_system</span>() <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">add_sun</span>() <span class="sc">|&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Earth&quot;</span>, <span class="at">mass =</span> mass_earth, <span class="at">x =</span> distance_earth_sun, <span class="at">vy =</span> speed_earth) <span class="sc">|&gt;</span></span>
@@ -446,13 +454,10 @@ other. Here’s the Sun with both Earth and Venus for a full year:</p>
 <p>Venus completes more than one full orbit in the same time Earth takes
 to go around once — you can see the inner orbit is both smaller and
 faster.</p>
-</div>
-<div id="the-quick-way-add_planet-and-load_solar_system" class="section level2">
-<h2>The Quick Way: <code>add_planet()</code> and
-<code>load_solar_system()</code></h2>
-<p>Typing out masses, distances, and velocities for every body gets
-tedious. <code>add_planet()</code> knows the real orbital data for all
-the planets, the Moon, and Pluto — just give it a name and a parent:</p>
+<p><strong>The easy way</strong> — use <code>add_sun()</code> and
+<code>add_planet()</code>, which use real masses and orbital data from
+JPL automatically. Any orbital element can be overridden for “what if”
+scenarios:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">create_system</span>() <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">add_sun</span>() <span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">add_planet</span>(<span class="st">&quot;Earth&quot;</span>, <span class="at">parent =</span> <span class="st">&quot;Sun&quot;</span>) <span class="sc">|&gt;</span></span>
@@ -471,35 +476,62 @@ describe orbits by their shape and orientation instead of raw positions
 and velocities. See <a href="keplerian-elements.html">Keplerian Orbital
 Elements</a> for the full explanation.</p>
 </div>
+<div id="removing-bodies" class="section level2">
+<h2>Removing Bodies</h2>
+<p>You can drop bodies from a system with <code>remove_body()</code>.
+This is handy when you want to start from
+<code>load_solar_system()</code> but don’t need every body:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">load_solar_system</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">remove_body</span>(<span class="fu">c</span>(<span class="st">&quot;Pluto&quot;</span>, <span class="st">&quot;Moon&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">simulate_system</span>(<span class="at">time_step =</span> seconds_per_day, <span class="at">duration =</span> seconds_per_year) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">plot_orbits</span>(<span class="at">three_d =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<p><code>remove_body()</code> accepts a single name or a character
+vector and works anywhere in the pipe chain — before or after adding
+bodies, but always before simulating.</p>
+</div>
 <div id="the-output-is-just-a-tibble" class="section level2">
 <h2>The Output is Just a Tibble</h2>
 <p><code>simulate_system()</code> returns a standard tidy tibble. You
 can use <code>dplyr</code>, <code>ggplot2</code>, <code>plotly</code>,
 or any other tool on it:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">create_system</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Earth&quot;</span>, <span class="at">mass =</span> mass_earth) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Moon&quot;</span>,  <span class="at">mass =</span> mass_moon, <span class="at">x =</span> distance_earth_moon, <span class="at">vy =</span> speed_moon) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">simulate_system</span>(<span class="at">time_step =</span> seconds_per_hour, <span class="at">duration =</span> seconds_per_day <span class="sc">*</span> <span class="dv">28</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>sim</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1,346 × 9</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt;    id       mass          x           y     z      vx          vy    vz  time</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt;  1 Earth 5.97e24         0         0        0   0        0            0     0</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt;  2 Moon  7.34e22 384400000         0        0   0     1022            0     0</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt;  3 Earth 5.97e24       215.        0        0   0.119    0.000571     0  3600</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt;  4 Moon  7.34e22 384382520.  3679200        0  -9.71  1022.           0  3600</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt;  5 Earth 5.97e24       860.        4.11     0   0.239    0.00229      0  7200</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt;  6 Moon  7.34e22 384330083.  7358065.       0 -19.4   1022.           0  7200</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt;  7 Earth 5.97e24      1934.       16.5      0   0.358    0.00514      0 10800</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt;  8 Moon  7.34e22 384242692. 11036262.       0 -29.1   1022.           0 10800</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt;  9 Earth 5.97e24      3438.       41.1      0   0.477    0.00914      0 14400</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; 10 Moon  7.34e22 384120357. 14713454.       0 -38.8   1021.           0 14400</span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; # ℹ 1,336 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">create_system</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Earth&quot;</span>, <span class="at">mass =</span> mass_earth) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">add_body</span>(<span class="st">&quot;Moon&quot;</span>,  <span class="at">mass =</span> mass_moon, <span class="at">x =</span> distance_earth_moon, <span class="at">vy =</span> speed_moon) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">simulate_system</span>(<span class="at">time_step =</span> seconds_per_hour, <span class="at">duration =</span> seconds_per_day <span class="sc">*</span> <span class="dv">28</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>sim</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1,346 × 9</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt;    id       mass          x           y     z      vx          vy    vz  time</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt;  1 Earth 5.97e24         0         0        0   0        0            0     0</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt;  2 Moon  7.34e22 384400000         0        0   0     1022            0     0</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt;  3 Earth 5.97e24       215.        0        0   0.119    0.000571     0  3600</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt;  4 Moon  7.34e22 384382520.  3679200        0  -9.71  1022.           0  3600</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt;  5 Earth 5.97e24       860.        4.11     0   0.239    0.00229      0  7200</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt;  6 Moon  7.34e22 384330083.  7358065.       0 -19.4   1022.           0  7200</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt;  7 Earth 5.97e24      1934.       16.5      0   0.358    0.00514      0 10800</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt;  8 Moon  7.34e22 384242692. 11036262.       0 -29.1   1022.           0 10800</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt;  9 Earth 5.97e24      3438.       41.1      0   0.477    0.00914      0 14400</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; 10 Moon  7.34e22 384120357. 14713454.       0 -38.8   1021.           0 14400</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; # ℹ 1,336 more rows</span></span></code></pre></div>
 <p>Each row is one body at one point in time, with columns for position
 (<code>x</code>, <code>y</code>, <code>z</code>), velocity
 (<code>vx</code>, <code>vy</code>, <code>vz</code>), mass, body ID, and
 time.</p>
+</div>
+<div id="saving-and-sharing-systems" class="section level2">
+<h2>Saving and Sharing Systems</h2>
+<p>You can save a full system to disk and restore it later:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">save_system</span>(sys, <span class="st">&quot;my_system.rds&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>restored <span class="ot">&lt;-</span> <span class="fu">load_system</span>(<span class="st">&quot;my_system.rds&quot;</span>)</span></code></pre></div>
+<p>To share body data as a CSV — for collaborators, Python, or Excel —
+use <code>export_bodies()</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">export_bodies</span>(sys, <span class="st">&quot;bodies.csv&quot;</span>)</span></code></pre></div>
+<p><code>save_system()</code> / <code>load_system()</code> preserves
+everything (bodies, gravitational constant, class) as an R object.
+<code>export_bodies()</code> writes a plain CSV with just the body
+table, which anyone can open.</p>
 </div>
 <div id="next-steps" class="section level2">
 <h2>Next Steps</h2>
